@@ -9,7 +9,7 @@ from . import serializers
 
 @permission_classes([IsAuthenticated])
 class FriendViewSet(viewsets.ModelViewSet):
-    queryset = models.Friend.objects.all()
+    queryset = models.Friend.objects.with_overdue()
     serializer_class = serializers.FriendSerializer
 
 
