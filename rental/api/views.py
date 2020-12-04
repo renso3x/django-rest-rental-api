@@ -23,3 +23,14 @@ class BelongingViewSet(viewsets.ModelViewSet):
 class BorrowedViewSet(viewsets.ModelViewSet):
     queryset = models.Borrowed.objects.all()
     serializer_class = serializers.BorrowedSerializer
+    filterset_fields = {"returned": ["exact", "lte", "gte", "isnull"]}
+
+    # Simple filtering
+    # def get_queryset(self):
+    #     qs = super().get_queryset()
+    #     only_missing = str(self.request.query_params.get("missing")).lower()
+
+    #     if only_missing in ["true", "1"]:
+    #         return qs.filter(returned__isnull=True)
+
+    #     return qs
